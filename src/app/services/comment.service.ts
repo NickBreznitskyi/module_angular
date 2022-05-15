@@ -15,7 +15,11 @@ export class CommentService {
   constructor(private http: HttpClient) {
   }
 
-  getComments(): Observable<IComment[]> {
+  getAll(): Observable<IComment[]> {
     return this.http.get<IComment[]>(this.url);
+  }
+
+  getById(id: string): Observable<IComment> {
+    return this.http.get<IComment>(this.url + '/' + id);
   }
 }
