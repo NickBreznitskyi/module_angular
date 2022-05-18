@@ -1,5 +1,7 @@
-<div>id: {{user.id}}</div>
-<div>Name: {{user.name}}</div>
-<div>Username: {{user.username}}</div>
-<div>Email: {{user.email}}</div>
-<a [routerLink]="[user.id]" [state]="{data: user}">Details</a>
+<div *ngIf="user">
+  <div>id: {{user.id}}</div>
+  <div>Name: {{user.name}}</div>
+  <div>Username: {{user.username}}</div>
+  <div>Email: {{user.email}}</div>
+  <a [routerLink]="[user.id]" [state]="{data: user}">Details</a>
+</div>

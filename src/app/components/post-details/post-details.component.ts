@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 import {IPost} from "../../interfaces";
 import {PostService} from "../../services";
@@ -13,17 +13,24 @@ export class PostDetailsComponent implements OnInit {
 
   postDetails: IPost
 
-  constructor(private postService: PostService, private activatedRoute: ActivatedRoute) {
+  constructor(
+    private postService: PostService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
+  ) {
   }
 
-  ngOnInit(): void {
+  ngOnInit()
+    :
+    void {
     this.activatedRoute.params.subscribe(({id}) => {
-      const {data} = history.state;
-      this._getData(data, id);
+      const state = this.router.getCurrentNavigation()?.extras?.state?.['post'] as IPost;
+      this._getData(state, id);
     })
   }
 
-  private _getData(data: IPost | undefined, id: string): void {
+  private _getData(data: IPost | undefined, id: string):
+    void {
     if (data) {
       this.postDetails = data
     } else {

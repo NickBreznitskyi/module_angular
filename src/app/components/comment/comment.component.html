@@ -1,3 +1,5 @@
-<div>id: {{comment.id}}</div>
-<div>Name: {{comment.name}}</div>
-<a [routerLink]="[comment.id]" [state]="comment">Details</a>
+<div *ngIf="comment">
+  <div>id: {{comment.id}}</div>
+  <div>Name: {{comment.name}}</div>
+  <a [routerLink]="[comment.id]" [state]="comment">Details</a>
+</div>

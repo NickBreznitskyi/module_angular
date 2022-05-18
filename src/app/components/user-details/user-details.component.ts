@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 import {IUserDetails} from "../../interfaces";
 import {UrlParseOrDdosService, UserService} from "../../services";
@@ -13,19 +13,24 @@ export class UserDetailsComponent implements OnInit {
 
   userDetails: IUserDetails;
 
-  constructor(private activatedRoute: ActivatedRoute, private urlParseOrDdosService: UrlParseOrDdosService, private userService: UserService) {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private urlParseOrDdosService: UrlParseOrDdosService,
+    private userService: UserService,
+    private router: Router
+  ) {
   }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(({id}) => {
-      const {data} = history.state;
+      const state = this.router.getCurrentNavigation()?.extras?.state?.['user'] as IUserDetails;
 
       //todo: Вирішив перенести логіку в сервіс, але воно не працює (не перезаписує data в subscribe).
       // Коли зробив методом в середині компоненти все працює.
       // Не знаю в чому причина.
       //this.userDetails = this.urlParseOrDdosService.getData(data, id);
 
-      this._getData(data, id);
+      this._getData(state, id);
     })
   }
 
