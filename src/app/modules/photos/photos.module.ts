@@ -6,6 +6,8 @@ import {PhotosComponent} from './components/photos/photos.component';
 import {PhotoComponent} from './components/photo/photo.component';
 import {PhotosRoutingModule} from './photos-routing.module';
 import {PhotoService} from "./services";
+import {PhotosResolver} from "./resolvers";
+import {PhotosGuard} from "./guards";
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import {PhotoService} from "./services";
     PhotosRoutingModule
   ],
   providers: [
-    PhotoService
+    PhotoService,
+    PhotosResolver,
+    PhotosGuard
   ]
 })
 export class PhotosModule {

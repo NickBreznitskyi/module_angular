@@ -23,19 +23,13 @@ export class UserDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(({id}) => {
       const state = this.router.getCurrentNavigation()?.extras?.state?.['user'] as IUserDetails;
-
-      //todo: Вирішив перенести логіку в сервіс, але воно не працює (не перезаписує data в subscribe).
-      // Коли зробив методом в середині компоненти все працює.
-      // Не знаю в чому причина.
-      //this.userDetails = this.urlParseOrDdosService.getData(data, id);
-
       this._getData(state, id);
     })
   }
 
   private _getData(data: IUserDetails | undefined, id: string): void {
     if (data) {
-      this.userDetails = data
+      this.userDetails = data;
     } else {
       this.userService.getById(id).subscribe(value => this.userDetails = value);
     }

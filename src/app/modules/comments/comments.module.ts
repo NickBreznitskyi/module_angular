@@ -7,6 +7,8 @@ import {CommentsComponent} from "./components/comments/comments.component";
 import {CommentComponent} from "./components/comment/comment.component";
 import {CommentDetailsComponent} from "./components/comment-details/comment-details.component";
 import {CommentService} from "./services";
+import {CommentsResolver} from "./resolvers";
+import {CommentsGuard} from "./guards";
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import {CommentService} from "./services";
     CommentsRoutingModule
   ],
   providers: [
-    CommentService
+    CommentService,
+    CommentsResolver,
+    CommentsGuard
   ]
 })
 export class CommentsModule {

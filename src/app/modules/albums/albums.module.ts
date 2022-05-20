@@ -5,6 +5,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {AlbumsRoutingModule} from './albums-routing.module';
 import {AlbumsComponent} from './components/albums/albums.component';
 import {AlbumComponent} from './components/album/album.component';
+import {AlbumsGuard} from "./guards";
+import {AlbumsResolver} from "./resolvers";
 import {AlbumService} from "./services";
 
 
@@ -19,7 +21,9 @@ import {AlbumService} from "./services";
     AlbumsRoutingModule
   ],
   providers: [
-    AlbumService
+    AlbumService,
+    AlbumsResolver,
+    AlbumsGuard
   ]
 })
 export class AlbumsModule {

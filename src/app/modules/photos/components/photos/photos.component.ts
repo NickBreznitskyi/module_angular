@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 
 import {IPhoto} from "../../interfaces";
-import {PhotoService} from "../../services";
 
 @Component({
   selector: 'app-photos',
@@ -12,11 +12,11 @@ export class PhotosComponent implements OnInit {
 
   photos: IPhoto[];
 
-  constructor(private photoService: PhotoService) {
+  constructor(private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.photoService.getAll().subscribe(value => this.photos = value);
+    this.activatedRoute.data.subscribe(({data}) => this.photos = data);
   }
 
 }
