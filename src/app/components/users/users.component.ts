@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 import {IUser} from "../../interfaces";
 import {UserService} from "../../services";
@@ -10,11 +10,17 @@ import {UserService} from "../../services";
 })
 export class UsersComponent implements OnInit {
   users: IUser[];
+  @Output()
+  userEmit = new EventEmitter<IUser>();
 
   constructor(private userService: UserService) {
   }
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe(res => this.users = res);
+  }
+
+  catchEmit(user: IUser): void {
+    this.userEmit.emit(user);
   }
 }

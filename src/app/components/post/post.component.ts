@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 import {IPost} from "../../interfaces";
+import {DataService} from "../../services/data.service";
 
 @Component({
   selector: 'app-post',
@@ -12,10 +13,13 @@ export class PostComponent implements OnInit {
   @Input()
   post: IPost;
 
-  constructor() {
+  constructor(private dataService: DataService) {
   }
 
   ngOnInit(): void {
   }
 
+  save() {
+    this.dataService.storagePost.next(this.post)
+  }
 }

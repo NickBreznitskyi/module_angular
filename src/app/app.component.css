@@ -8,3 +8,6 @@ h2 {
   text-align: center;
 }
 
+.details {
+  white-space: pre-wrap;
+}

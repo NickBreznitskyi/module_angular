@@ -1,1 +1,5 @@
-<app-user class="user" *ngFor="let user of users" [user]="user"></app-user>
+<app-user
+  (userEmit)="catchEmit($event)"
+  *ngFor="let user of users"
+  [user]="user"
+  class="user"></app-user>
